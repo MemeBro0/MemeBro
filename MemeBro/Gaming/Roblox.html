@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MemeBro - Roblox Memes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg1: #13011a;
+      --bg2: #3a0a36;
+      --bg3: #4c0f74;
+      --brand: #e67aff;
+      --brand2: #6bd1ff;
+      --card: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.18);
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+      scroll-behavior: smooth;
+      min-height: 100vh;
+      background: radial-gradient(1200px 600px at 10% 10%, #2b0b42 0%, var(--bg1) 50%),
+                  radial-gradient(1000px 500px at 80% 20%, #0f2748 0%, var(--bg2) 55%),
+                  linear-gradient(180deg, var(--bg3) 0%, var(--bg1) 100%);
+    }
+
+    /* Stars layer */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.35), transparent 40%),
+        radial-gradient(1.5px 1.5px at 70% 10%, rgba(255,255,255,0.25), transparent 40%),
+        radial-gradient(1.8px 1.8px at 40% 80%, rgba(255,255,255,0.25), transparent 40%);
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+      background: rgba(77, 5, 73, 0.65);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      padding: 0.9rem 1rem;
+    }
+    nav a {
+      position: relative;
+      color: #f2f2f2;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: clamp(12px, 3vw, 16px);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      transition: color 0.2s ease;
+    }
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 10%;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--brand), var(--brand2));
+      box-shadow: 0 0 10px var(--brand);
+      transition: width 0.25s ease;
+    }
+    nav a:hover::after { width: 80%; }
+    nav a.active {
+      color: #ffffff;
+      text-shadow: 0 0 12px rgba(230, 122, 255, 0.6);
+    }
+
+    .no1 {
+      margin-top: 60px;
+      text-align: center;
+      font-size: clamp(28px, 6vw, 52px);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #fff;
+    }
+
+    .sigma {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .meme-container {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 15px;
+      margin-bottom: 24px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .meme-container:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      border-color: rgba(230,122,255,0.45);
+    }
+
+    .imgmeme {
+      max-width: 100%;
+      border-radius: 10px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .meme-info {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #c7c7dd;
+    }
+
+    .accent {
+      width: 120px;
+      height: 3px;
+      margin: 10px auto 24px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--brand), var(--brand2));
+      box-shadow: 0 0 16px rgba(230,122,255,0.45);
+    }
+
+    footer {
+      background: linear-gradient(90deg, #2a0a2a, #0b2442);
+      text-align: center;
+      padding: 22px;
+      font-size: 14px;
+      color: #b9bbd6;
+      margin-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+
+    @media (max-width: 600px) {
+      nav { flex-wrap: wrap; }
+      nav a { margin: 0.3rem; }
+      .meme-info { flex-direction: column; align-items: center; gap: 5px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav aria-label="Main navigation">
+    <a href="index.html">Home🏠</a>
+    <a href="Who.html">Who I am</a>
+    <a href="Minecraft.html">Minecraft</a>
+    <a href="Roblox.html" class="active">Roblox</a>
+    <a href="FPS.html">FPS</a>
+  </nav>
+</header>
+
+<div class="no1" data-aos="fade-up">The Best Roblox Memes</div>
+<div class="accent"></div>
+
+<div class="sigma">
+  <div class="meme-container" data-aos="zoom-in">
+    <img src="Assets/Roblox/meme1.jpg" alt="Roblox Meme 1" class="imgmeme">
+    <div class="meme-info">
+      <span class="meme-date">Nov 29, 2025</span>
+      <span class="meme-creator">by Sigmaaboi</span>
+    </div>
+  </div>
+
+  <div class="meme-container" data-aos="zoom-in">
+    <img src="Assets/Roblox/meme2.jpg" alt="Roblox Meme 2" class="imgmeme">
+    <div class="meme-info">
+      <span class="meme-date">Nov 29, 2025</span>
+      <span class="meme-creator">by Sigmaaboi</span>
+    </div>
+  </div>
+
+  <div class="meme-container" data-aos="zoom-in">
+    <img src="Assets/Roblox/Meme3.jpg" alt="Roblox Meme 3" class="imgmeme">
+    <div class="meme-info">
+      <span class="meme-date">Nov 29, 2025</span>
+      <span class="meme-creator">by Sigmaaboi</span>
+    </div>
+  </div>
+
+  <div class="meme-container" data-aos="zoom-in">
+    <img src="Assets/Roblox/Meme4.jpg" alt="Roblox Meme 4" class="imgmeme">
+    <div class="meme-info">
+      <span class="meme-date">Nov 29, 2025</span>
+      <span class="meme-creator">by Sigmaaboi</span>
+    </div>
+  </div>
+
+    <div class="meme-container" data-aos="zoom-in">
+    <img src="Assets/Roblox/Meme5.jpg" alt="Roblox Meme 5" class="imgmeme">
+    <div class="meme-info">
+      <span class="meme-date">Nov 29, 2025</span>
+      <span class="meme-creator">by Sigmaaboi</span>
+    </div>
+  </div>
+
+  <div class="meme-container" data-aos="zoom-in">
+    <img src="Assets/Roblox/mem6.jpg" alt="Roblox Meme 6" class="imgmeme">
+    <div class="meme-info">
+      <span class="meme-date">Nov 29, 2025</span>
+      <span class="meme-creator">by Sigmaaboi</span>
+    </div>
+  </div>
+
+  <div class="meme-container" data-aos="zoom-in">
+    <img src="Assets/Roblox/Meme7.jpg" alt="Roblox Meme 7" class="imgmeme">
+    <div class="meme-info">
+      <span class="meme-date">Nov 29, 2025</span>
+      <span class="meme-creator">by Sigmaaboi</span>
+    </div>
+  </div>
+</div>
+
+<section class="sigma" data-aos="fade-up">
+  <h2 style="text-align:center;">📢 Want Your Roblox Meme Featured?</h2>
+  <div class="accent"></div>
+  <p style="text-align:center; color:#ccc;">
+    Submit your funniest Roblox meme and get featured on MemeBro!  
+    <a href="https://discord.gg/Xmm47QKc" style="color:#fff;">Join our Discord →</a>
+  </p>
+</section>
+
+<footer>
+  © MemeBro 2025 — Powered by Roblox laughter.
+</footer>
+
+<!-- AOS scripts -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    AOS.init({ duration: 800, once: true, easing: 'ease-out' });
+  });
+
+  // Active nav link highlight
+  const navLinks = document.querySelectorAll('nav a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
